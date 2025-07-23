@@ -97,11 +97,11 @@ def _add_time_taken_of_chain(chain_id, time_):
 
     tt["sum"] += time_
     tt["num"] += 1
-    rc["avg_time"] += round3(tt["sum"] / tt["num"])
+    rc["avg_time"] = round3(tt["sum"] / tt["num"])
     tt["max"] = round3(max(time_, tt["max"]))
-    rc["max_time"] += tt["max"]
+    rc["max_time"] = tt["max"]
     tt["min"] = round3(min(time_, tt["min"]))
-    rc["min_time"] += tt["min"]
+    rc["min_time"] = tt["min"]
 
 def add_succ(chain_id, time_):
     tt = time_taken
@@ -113,17 +113,16 @@ def add_succ(chain_id, time_):
     res["total_succ%"] = mk_percent(res["total_successes"], res["total"])
     tt["sum"] += time_
     tt["num"] += 1
-    res["avg_time"] += round3(tt["sum"] / tt["num"])
+    res["avg_time"] = round3(tt["sum"] / tt["num"])
     tt["max"] = round3(max(time_, tt["max"]))
-    res["max_time"] += tt["max"]
+    res["max_time"] = tt["max"]
     tt["min"] = round3(min(time_, tt["min"]))
-    res["min_time"] += tt["min"]
+    res["min_time"] = tt["min"]
 
     rc["total"] += 1
     rc["succs"] += 1
     rc["succ%"] = mk_percent(rc["succs"], rc["total"])
     _add_time_taken_of_chain(chain_id, time_)
-
 
 def add_fail_with_code(chain_id, status_code):
     _add_fail(chain_id)
